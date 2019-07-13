@@ -1,8 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 export const ProjectDetails = props => {
+	const { id } = props.match.params;
+
+	const { getProjectById, project, BASE_URL, setState } = props;
+
+	useEffect(
+		() => {
+			const url = `${BASE_URL}/projects/${id}`;
+			getProjectById({ url, setState });
+		},
+		[BASE_URL, getProjectById, id, setState]
+	);
+
+	console.log(project);
+
 	return (
 		<React.Fragment>
 			<StyledHeader>
@@ -13,17 +26,20 @@ export const ProjectDetails = props => {
 
 			<main>
 				<Container>
-					<Content>Details</Content>
+					<Content>
+						<h2>Project Details</h2>
+						<h3>{project.name}</h3>
+						<p>{project.description}</p>
+						<h2>Actions</h2>
+						<ul>
+							<li>List here</li>
+						</ul>
+					</Content>
 				</Container>
 			</main>
 		</React.Fragment>
 	);
 };
-
-// ProjectDetails.propTypes = {
-// 	projects: PropTypes.array.isRequired,
-// 	fetching: PropTypes.bool.isRequired
-// };
 
 const Container = styled.div`
 	width: 80%;
@@ -39,6 +55,7 @@ const StyledHeader = styled.header`
 
 const Content = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-content: center;
 	padding-top: 100px;
