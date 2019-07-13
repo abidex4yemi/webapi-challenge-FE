@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Route } from 'react-router-dom';
+import { getProjects } from '../../helpers';
+import { Projects } from '../Projects';
 
 const BASE_URL = `https://web-api-sprint-1.herokuapp.com/api/v1`;
 
@@ -14,25 +16,12 @@ export const App = () => {
 
 	useEffect(() => {
 		const url = `${BASE_URL}/projects`;
-		getProjects(url);
+		getProjects({ url, setState });
 	}, []);
 
-	const getProjects = url => {
-		axios
-			.get(url)
-			.then(res => {
-				setState(prevState => ({
-					...prevState,
-					projects: res.data.body
-				}));
-			})
-			.catch(err => {
-				setState(prevState => ({
-					...prevState,
-					error: err
-				}));
-			});
-	};
-
-	return <div>Welcome</div>;
+	return (
+		<div>
+			<Route exact path="/" render={props => <Projects {...props} {...state} />} />
+		</div>
+	);
 };

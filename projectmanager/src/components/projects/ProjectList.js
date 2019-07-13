@@ -1,5 +1,5 @@
-import React from './node_modules/react';
-import PropTypes from './node_modules/prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Project } from './Project';
 
 export const ProjectList = props => {
@@ -8,7 +8,7 @@ export const ProjectList = props => {
 	return (
 		<section>
 			{projects.map(project => {
-				return <Project key={project.id} project={project} />;
+				return <Project key={project.id} {...project} />;
 			})}
 		</section>
 	);

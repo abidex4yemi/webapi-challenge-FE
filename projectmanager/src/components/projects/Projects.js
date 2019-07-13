@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ProjectList } from './ProjectList';
 
 export const Projects = props => {
-	const { projects } = props;
+	const { projects, fetching } = props;
 
 	return (
 		<React.Fragment>
@@ -15,7 +15,8 @@ export const Projects = props => {
 
 			<main>
 				<div>
-					<ProjectList projects={projects} />
+					{fetching && <div>Loading...</div>}
+					{projects.length > 0 ? <ProjectList projects={projects} /> : <div>No project </div>}
 				</div>
 			</main>
 		</React.Fragment>
@@ -23,7 +24,6 @@ export const Projects = props => {
 };
 
 Projects.propTypes = {
-	id: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
-	description: PropTypes.string.isRequired
+	projects: PropTypes.array.isRequired,
+	fetching: PropTypes.bool.isRequired
 };
