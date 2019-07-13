@@ -7,15 +7,19 @@ export const Action = props => {
 
 	return (
 		<StyledAction>
-			<p>{description}</p>
-			<p>{notes}</p>
+			<p>
+				<span>Description:</span> {description}
+			</p>
+			<p>
+				<span>Notes:</span> {notes}
+			</p>
 		</StyledAction>
 	);
 };
 
 Action.propTypes = {
 	id: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
+	notes: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired
 };
 

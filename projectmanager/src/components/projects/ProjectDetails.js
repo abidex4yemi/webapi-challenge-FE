@@ -1,10 +1,32 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { ActionList } from '../Actions';
 
 export const ProjectDetails = props => {
 	const { id } = props.match.params;
 
 	const { getProjectById, project, BASE_URL, setState } = props;
+
+	const render = () => {
+		if (Object.keys(project).length === 0) {
+			return <div>Loading...</div>;
+		} else if (project.actions.length === 0) {
+			return <div>No action </div>;
+		}
+
+		return (
+			<div>
+				<p>
+					<span>Name:</span> {project.name}
+				</p>
+				<p>
+					<span>Description:</span> {project.description}
+				</p>
+				<h3>Actions</h3>
+				<ActionList actions={project.actions} />
+			</div>
+		);
+	};
 
 	useEffect(
 		() => {
@@ -13,8 +35,6 @@ export const ProjectDetails = props => {
 		},
 		[BASE_URL, getProjectById, id, setState]
 	);
-
-	console.log(project);
 
 	return (
 		<React.Fragment>
@@ -28,12 +48,8 @@ export const ProjectDetails = props => {
 				<Container>
 					<Content>
 						<h2>Project Details</h2>
-						<h3>{project.name}</h3>
-						<p>{project.description}</p>
-						<h2>Actions</h2>
-						<ul>
-							<li>List here</li>
-						</ul>
+
+						{render()}
 					</Content>
 				</Container>
 			</main>
@@ -56,7 +72,22 @@ const StyledHeader = styled.header`
 const Content = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-content: center;
-	padding-top: 100px;
+	align-items: center;
+
+	h3 {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		margin: 50px 0;
+	}
+
+	p {
+		margin-bottom: 10px;
+	}
+
+	span {
+		font-weight: bold;
+	}
 `;

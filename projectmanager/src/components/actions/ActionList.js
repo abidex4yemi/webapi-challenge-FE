@@ -26,9 +26,7 @@ ActionList.propTypes = {
 	)
 };
 
-const StyledAction = styled.section`
-	display: flex;
-	justify-content: space-evenly;
-	align-content: center;
-	width: 100%;
+const StyledAction = styled.ul`
+	margin: 0;
+	padding: 0;
 `;
