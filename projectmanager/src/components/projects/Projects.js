@@ -6,6 +6,16 @@ import { ProjectList } from './ProjectList';
 export const Projects = props => {
 	const { projects, fetching } = props;
 
+	const render = () => {
+		if (fetching) {
+			return <div>Loading...</div>;
+		} else if (projects.length === 0) {
+			return <div>No project </div>;
+		}
+
+		return <ProjectList projects={projects} />;
+	};
+
 	return (
 		<React.Fragment>
 			<StyledHeader>
@@ -16,8 +26,7 @@ export const Projects = props => {
 
 			<main>
 				<Container>
-					{fetching && <div>Loading...</div>}
-					{projects.length > 0 ? <ProjectList projects={projects} /> : <div>No project </div>}
+					<Content>{render()}</Content>
 				</Container>
 			</main>
 		</React.Fragment>
@@ -39,4 +48,11 @@ const StyledHeader = styled.header`
 	color: #fff;
 	text-align: center;
 	padding: 1rem;
+`;
+
+const Content = styled.div`
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	padding-top: 100px;
 `;

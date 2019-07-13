@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Project } from './Project';
 
 export const ProjectList = props => {
 	const { projects } = props;
 
 	return (
-		<section>
+		<StyledProjectList>
 			{projects.map(project => {
 				return <Project key={project.id} {...project} />;
 			})}
-		</section>
+		</StyledProjectList>
 	);
 };
 
@@ -24,3 +25,10 @@ ProjectList.propTypes = {
 		})
 	)
 };
+
+const StyledProjectList = styled.section`
+	display: flex;
+	justify-content: space-evenly;
+	align-content: center;
+	width: 100%;
+`;

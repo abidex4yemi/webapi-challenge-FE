@@ -29,4 +29,11 @@ const StyledButton = styled.button`
 	background: #79589f;
 	color: #fff;
 	border-radius: 5px;
+	cursor: pointer;
+	outline: 0;
+	transition: 0.2s;
+
+	&:hover {
+		background: #5f467e;
+	}
 `;
