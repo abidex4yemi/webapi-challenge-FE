@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { ActionList } from '../Actions';
 
 export const ProjectDetails = props => {
@@ -40,7 +41,8 @@ export const ProjectDetails = props => {
 		<React.Fragment>
 			<StyledHeader>
 				<Container>
-					<h1>Welcome to project manager app</h1>
+					<StyledBackButton to="/">Back</StyledBackButton>
+					<h1>Project Details</h1>
 				</Container>
 			</StyledHeader>
 
@@ -67,6 +69,11 @@ const StyledHeader = styled.header`
 	color: #fff;
 	text-align: center;
 	padding: 1rem;
+
+	div {
+		display: flex;
+		justify-content: space-between;
+	}
 `;
 
 const Content = styled.div`
@@ -89,5 +96,26 @@ const Content = styled.div`
 
 	span {
 		font-weight: bold;
+	}
+`;
+
+const StyledBackButton = styled(Link)`
+	display: inline-block;
+	font-size: 18px;
+	text-decoration: none;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	border: 0;
+	background: #fff;
+	color: #79589f;
+	border-radius: 5px;
+	cursor: pointer;
+	outline: 0;
+	transition: 0.2s;
+
+	&:hover {
+		background: #5f467e;
+		color: #fff;
 	}
 `;
